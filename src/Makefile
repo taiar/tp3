@@ -17,6 +17,8 @@ io: io.c io.h
 main: grafo io tp3.c
 	$(CC) -o $(BIN) tp3.c grafo.o io.o $(CFLAGS)
 
+valgrind: clean all
+	valgrind ./$(BIN) $(XFLAGS1)
 all: main
 
 clean:
