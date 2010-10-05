@@ -4,5 +4,5 @@ Debug*
 Release*
 *.o
 *.h.*
-tp2
+tp*
 *.swp
