@@ -6,6 +6,13 @@
 
 int main(int argc, char **argv)
 {
-  puts("taiar");
+  Entrada entrada;
+
+  entradaInit(&entrada);
+  if(!entradaLe(argc, argv, &entrada))
+    return EXIT_FAILURE;
+
+  entradaVerifica(&entrada);
+
   return EXIT_SUCCESS;
 }

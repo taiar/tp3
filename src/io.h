@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <ctype.h>
+
 /**
  * Armazena dados lidos da entrada.
  */
@@ -31,5 +32,10 @@ int entradaLe(int, char**, Entrada*);
  * Libera dados utilizados na leitura da entrada.
  */
 void entradaFree(Entrada*);
+
+/**
+ * Verifica dados passados na entrada.
+ */
+void entradaVerifica(Entrada*);
 
 #endif
