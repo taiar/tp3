@@ -24,7 +24,7 @@ int entradaLe(int argc, char** argv, Entrada *entrada)
 {
   entradaInit(entrada);
   int c;
-  while ((c = getopt(argc, argv, "a:b:c:")) != -1)
+  while ((c = getopt(argc, argv, "a:b:c:d:e:f:g:")) != -1)
   {
     switch (c)
     {
