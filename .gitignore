@@ -1,0 +1,8 @@
+.cproject
+.project
+Debug*
+Release*
+*.o
+*.h.*
+tp2
+*.swp
