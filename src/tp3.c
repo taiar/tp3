@@ -14,5 +14,7 @@ int main(int argc, char **argv)
 
   entradaVerifica(&entrada);
 
+  entradaFree(&entrada);
+
   return EXIT_SUCCESS;
 }
