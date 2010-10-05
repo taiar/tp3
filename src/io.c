@@ -5,10 +5,19 @@ void entradaInit(Entrada *entrada)
   entrada->aFlag = 0;
   entrada->bFlag = 0;
   entrada->cFlag = 0;
+  entrada->dFlag = 0;
+  entrada->eFlag = 0;
+  entrada->fFlag = 0;
 
-  entrada->entradaListaDeTextos = NULL;
-  entrada->saidaMaisSimilares = NULL;
-  entrada->saidaPalavrasChave = NULL;
+  entrada->totalDias = 0;
+  entrada->diasAway = 0;
+
+  entrada->dinheiro = 0.;
+  entrada->precoKmCarro = 0.;
+  entrada->precoKmAviao = 0.;
+
+  entrada->algoritmo = NULL;
+  entrada->cidadeInicio = NULL;
 }
 
 int entradaLe(int argc, char** argv, Entrada *entrada)
@@ -21,46 +30,49 @@ int entradaLe(int argc, char** argv, Entrada *entrada)
     {
       case 'a':
         entrada->aFlag = 1;
-        entrada->entradaListaDeTextos = optarg;
+        entrada->totalDias = atoi(optarg);
         break;
       case 'b':
         entrada->bFlag = 1;
-        entrada->saidaPalavrasChave = optarg;
+        entrada->cidadeInicio = optarg;
         break;
       case 'c':
         entrada->cFlag = 1;
-        entrada->saidaMaisSimilares = optarg;
+        entrada->dinheiro = atof(optarg);
+        break;
+      case 'd':
+        entrada->dFlag = 1;
+        entrada->diasAway = atoi(optarg);
+        break;
+      case 'e':
+        entrada->eFlag = 1;
+        entrada->precoKmCarro = atof(optarg);
+        break;
+      case 'f':
+        entrada->fFlag = 1;
+        entrada->precoKmAviao = atof(optarg);
+        break;
+      case 'g':
+        entrada->gFlag = 1;
+        entrada->algoritmo = optarg;
         break;
     }
   }
-  if (entrada->aFlag != 1 || entrada->bFlag != 1 || entrada->cFlag != 1)
+  if (entrada->aFlag != 1 || entrada->bFlag != 1 || entrada->cFlag != 1
+      || entrada->dFlag != 1 || entrada->eFlag != 1 || entrada->fFlag != 1
+      || entrada->gFlag != 1)
   {
-    printf(
-        "Os parâmetros não foram passados corretamente na linha de comando:\n\t");
-    printf(
-        "%s -a <lista de textos> -b <saida das palavras chave> -c <saida textos mais similares>\n",
-        argv[0]);
+    printf("Os parâmetros não foram passados corretamente na linha de comando:\n\t");
+    printf("%s -a <Quantidade total de dias de viagem> \n-b <Cidade que começa a viagem> \n-c <Dinheiro que possuem para viajar>", argv[0]);
+    printf("\n-d <Quantidade máxima de dias sem visitar alguma região do Brasil> \n-e <Preço por Km para viajar de carro> \n-f");
+    printf("<Preço por Km para viajar de avião> -g [otima|heuristica]\n");
     return 0;
   }
 
-  entrada->listaTextos = fopen(entrada->entradaListaDeTextos, "r");
-  if (!entrada->listaTextos)
+  entrada->distancias = fopen("distancias", "r");
+  if (!entrada->distancias)
   {
-    printf(
-        "O arquivo passado como parâmetro de lista de textos '%s' não existe.\n",
-        entrada->entradaListaDeTextos);
-    return 0;
-  }
-  return 1;
-}
-
-int entradaReinicia(Entrada *entrada)
-{
-  if (entrada->listaTextos) fclose(entrada->listaTextos);
-  entrada->listaTextos = fopen(entrada->entradaListaDeTextos, "r");
-  if (!entrada->listaTextos)
-  {
-    printf("Não foi possível reiniciar a leitura da lista de textos");
+    printf("O arquivo de distâncias não está correto.\n");
     return 0;
   }
   return 1;
@@ -68,46 +80,5 @@ int entradaReinicia(Entrada *entrada)
 
 void entradaFree(Entrada *entrada)
 {
-  fclose(entrada->listaTextos);
-}
-
-int saidaInicia(Entrada *entrada)
-{
-  entrada->palavrasChave = fopen(entrada->saidaPalavrasChave, "w");
-  entrada->similares = fopen(entrada->saidaMaisSimilares, "w");
-  if (!entrada->palavrasChave || !entrada->similares)
-  {
-    printf("Não foi possível escrever os arquivos de saída. '%s' e '%s'\n",
-        entrada->saidaPalavrasChave, entrada->saidaMaisSimilares);
-    return 0;
-  }
-  return 1;
-}
-
-void saidaFree(Entrada *entrada)
-{
-  fclose(entrada->palavrasChave);
-  fclose(entrada->similares);
-}
-
-void getToken(FILE *handle, char* string, int *next)
-{
-  if (feof(handle)) *next = 1;
-  int count = 0;
-  char buff;
-  char min;
-  string[0] = '\0';
-  buff = getc(handle);
-  while (!isalpha(buff) && !feof(handle))
-    buff = getc(handle);
-  while (isalpha(buff) && !feof(handle))
-  {
-    min = tolower(buff);
-    string[count] = min;
-    string[count + 1] = '\0';
-    count += 1;
-    buff = getc(handle);
-  }
-  if (count < KEYWORD_MIN_CHAR && !feof(handle)) getToken(handle, string, next);
-  else return;
+  fclose(entrada->distancias);
 }
