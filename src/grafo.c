@@ -15,7 +15,7 @@ void grafoInicia(int tamanho, grafo *g)
     g->matriz[i] = malloc(sizeof(int) * (g->nNos));
     for (j = 0; j < g->nNos; ++j)
     {
-      g->matriz[i][j] = 0;
+      g->matriz[i][j] = -1;
     }
   }
   return;
