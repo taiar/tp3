@@ -14,8 +14,11 @@ grafo: grafo.c grafo.h
 io: io.c io.h
 	$(CC) -c io.c io.h $(CFLAGS)
 
-main: grafo io tp3.c
-	$(CC) -o $(BIN) tp3.c grafo.o io.o $(CFLAGS)
+geografia: geografia.c geografia.h
+	$(CC) -c geografia.c geografia.h $(CFLAGS)
+
+main: grafo io geografia tp3.c
+	$(CC) -o $(BIN) tp3.c grafo.o io.o geografia.o $(CFLAGS)
 
 valgrind: clean all
 	valgrind ./$(BIN) $(XFLAGS1)

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "geografia.h"
 #include "io.h"
 #include "grafo.h"
 
@@ -13,8 +14,9 @@ int main(int argc, char **argv)
     return EXIT_FAILURE;
 
   entradaVerifica(&entrada);
-
   entradaFree(&entrada);
+
+  printf("O indice de São Paulo é %d, Huuuuuummmmmnnn!!!\n", cidadeGetIndice("saopaulo"));
 
   return EXIT_SUCCESS;
 }
