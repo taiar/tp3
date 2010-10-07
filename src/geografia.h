@@ -8,6 +8,8 @@
 #ifndef GEOGRAFIA_H_
 #define GEOGRAFIA_H_
 
+#include "grafo.h"
+
 /**
  * Definições padrões do número de capitais e regiões do Brasil.
  */
@@ -29,19 +31,18 @@ static char cidades[N_CIDADES][N_MAX_CHAR_CIDADES_NAME] =
 /**
  * Vetor que especifica à qual região do Brasil cada capital pertence.
  */
-
 static int regioes[N_REGIOES][N_MAX_CIDADES_REGIAO] =
 {
-//Centro-oeste
-    { 6, 5, 10, 4, -1, -1, -1, -1, -1 },
-    //Nordeste
-    { 13, 22, 9, 23, 11, 19, 25, 15, 0 },
-    //Norte
-    { 20, 12, 14, 1, 18, 3, 16, -1, -1 },
-    //Sudeste
-    { 26, 2, 21, 24, -1, -1, -1, -1, -1 },
-    //Sul
-    { 7, 8, 17, -1, -1, -1, -1, -1, -1 } };
+  //Centro-oeste
+  { 6, 5, 10, 4, -1, -1, -1, -1, -1 },
+  //Nordeste
+  { 13, 22, 9, 23, 11, 19, 25, 15, 0 },
+  //Norte
+  { 20, 12, 14, 1, 18, 3, 16, -1, -1 },
+  //Sudeste
+  { 26, 2, 21, 24, -1, -1, -1, -1, -1 },
+  //Sul
+  { 7, 8, 17, -1, -1, -1, -1, -1, -1 } };
 
 /**
  * Retorna índice único da cidade.

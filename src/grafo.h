@@ -3,15 +3,14 @@
 
 typedef struct
 {
-  int distRod;
-  int distAer;
-} no;
+  int rodoviaria;
+  int aerea;
+} aresta;
 
 typedef struct
 {
-  unsigned int nNos;
-  unsigned int **matriz;
-  no **distancias;
+  int nNos;
+  aresta **distancias;
 } grafo;
 
 void grafoInicia(int, grafo*);

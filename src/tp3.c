@@ -17,6 +17,7 @@ int main(int argc, char **argv)
   entradaFree(&entrada);
 
   printf("O indice de São Paulo é %d, Huuuuuummmmmnnn!!!\n", cidadeGetIndice("saopaulo"));
+  printf("Sao paula é da regiao %d\n", cidadeGetRegiao(cidadeGetIndice("saopaulo")));
 
   return EXIT_SUCCESS;
 }

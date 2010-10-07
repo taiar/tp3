@@ -9,13 +9,14 @@ void grafoInicia(int tamanho, grafo *g)
   int i, j;
   g->nNos = tamanho;
 
-  g->matriz = malloc(sizeof(int*) * (g->nNos));
+  g->distancias = malloc(sizeof(aresta*) * (g->nNos));
   for (i = 0; i < g->nNos; i += 1)
   {
-    g->matriz[i] = malloc(sizeof(int) * (g->nNos));
+    g->distancias[i] = malloc(sizeof(aresta) * (g->nNos));
     for (j = 0; j < g->nNos; ++j)
     {
-      g->matriz[i][j] = -1;
+      g->distancias[i][j].aerea = -1;
+      g->distancias[i][j].rodoviaria = -1;
     }
   }
   return;
@@ -27,10 +28,11 @@ void grafoInsereAresta(int cX, int cY, int peso, grafo *g)
   return;
 }
 
-int grafoRemoveAresta(int cX, int cY, grafo *g)
+aresta grafoRemoveAresta(int cX, int cY, grafo *g)
 {
-  int buff = g->matriz[cX][cY];
-  g->matriz[cX][cY] = 0;
+  aresta buff = g->distancias[cX][cY];
+  g->distancias[cX][cY].aerea = -1;
+  g->distancias[cX][cY].rodoviaria = -1;
   return buff;
 }
 
@@ -50,6 +52,6 @@ void grafoFree(grafo *g)
 {
   int i;
   for (i = 0; i < g->nNos; i += 1)
-    free(g->matriz[i]);
-  free(g->matriz);
+    free(g->distancias[i]);
+  free(g->distancias);
 }
