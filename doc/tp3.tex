@@ -237,12 +237,12 @@ O programa foi separado em quatro módulos:
 \item \textbf{Grafo:} contém todas as operações executadas sobre a 
 estrutura de dados Grafo, que foi utilizada para armazenamento e cálculo
 das distâncias entre as cidades.
-\item \textbf{Entrada e Saída:} controla a leitura do arquivo de distâncias,
+\item \textbf{Entrada e Saída:} controla a leitura do arquivo de distâncias
 e a escrita do resultado do programa na saída padrão. Também faz a validação dos 
 argumentos de entrada pela linha de comando.
 \item \textbf{Geografia:} contém dados como nomes das cidades (para sua identificação
-e armazenamento de seu número único de identificação), descrição das regiões do brasil
-segundo suas capitais e operações sobre esses dados geográficos.
+e armazenamento de seu identificador único), descrição das regiões do brasil
+segundo as capitais de seus estados e algumas operações sobre esses dados geográficos.
 \item \textbf{Principal:} interagiu com todos os outros módulos retornando erro
 quando alguma irregularidade era colocada, controlou o fluxo de execução do
 programa.
@@ -254,7 +254,7 @@ sistema Linux chamado \textbf{getopt} que permite uma leitura mais robusta dos a
 passados ao programa. O comando para execução do programa definido para a linha de entrada 
 foi:
 \begin{verbatim}
-  #: ./tp3 -a <A> -b <B> -c <C> -d <D> -e <E> -f <F> -g [otima|heuristica]
+#: ./tp3 -a <A> -b <B> -c <C> -d <D> -e <E> -f <F> -g <G> 
 \end{verbatim}
 Sendo: 
 \begin{itemize}
@@ -266,35 +266,58 @@ Sendo:
   \item \textbf{E} - Preço por Km para viajar de Carro;
   \item \textbf{F} - Preço por Km para viajar de Avião; 
   \item \textbf{G} - Algoritmo a ser exevutado: solução ótima (\textit{otima}) ou a 
-  heurística (textit{heuristica}).
+  heurística (\textit{heuristica}).
 \end{itemize}
 
 % falar sobre o arquivo de distancias
+O arquivo de distâncias especifica a distância em Km entre cada uma das capitais brasileiras
+no seguinte formato:
+\begin{verbatim}
+...
+<A> <B> <C> <D>
+...
+\end{verbatim}
+Sendo:
+\begin{itemize}
+  \item \textbf{A} - nome da cidade A;
+  \item \textbf{B} - nome da cidade B; 
+  \item \textbf{C} - distância rodoviária entre a cidade A a cidade B;
+  \item \textbf{D} - distância aérea entre a cidade A e a cidade B. 
+\end{itemize}
 
 % falar sobre o formato da saida
+A saída do programa é retornada na saída padrão do sistema no seguinte formato:
+\begin{verbatim}
+...
+<A> <B> <C>
+...
+\end{verbatim}
+Sendo:
+\begin{itemize}
+  \item \textbf{A} - número do dia em que o candidato chegou à cidade;
+  \item \textbf{B} - nome da cidade em que o candidato chegou; 
+  \item \textbf{C} - meio de transporte utilizado pelo candidato para ir até a próxima cidade.
+\end{itemize}
 
 \subsection{Compilação}
 O compilador utilizado neste trabalho foi o GCC (adotado como padrão para a disciplina) e 
 o comando para compilar o programa através do GCC é:
 \begin{verbatim}
-  #: gcc -o tp0 main.c io.c io.h vocabulario.c vocabulario.h \\
-            util.c util.h
+  #: gcc -o tp3 tp3.c io.c io.h geografia.c geografia.h grafo.c grafo.h
 \end{verbatim}
 caso estejam todos os arquivos dentro do mesmo diretório.
 
 Como pedido na especificação, foi feito um arquivo Makefile com o qual é possível compilar
 o programa com o comando: 
 \begin{verbatim}
-  #: make build
+  #: make all
 \end{verbatim}
 
 E podemos compilar e executar o programa com o comando:
 \begin{verbatim}
   #: make run
 \end{verbatim}
-que fará, além da compilação, com que o programa rode e execute a sua rotina para uma entrada
-já tratada e sem acentuação, "til" ou cedil hasdisponibilizada juntamente com o diretório 
-do trabalho.
+que fará, além da compilação, com que o programa execute com uma entrada arbitrária.
 
 \section{Avaliação Experimental}
 \label{avaliacao_experimental}
