@@ -115,8 +115,3 @@ void entradaVerifica(Entrada *entrada)
   }
   printf("\n\n");
 }
-
-void entradaLeDistancias(Entrada *entrada, grafo *grafo)
-{
-
-}

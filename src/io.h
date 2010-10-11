@@ -6,8 +6,6 @@
 #include <unistd.h>
 #include <ctype.h>
 
-#include "grafo.h"
-
 /**
  * Armazena dados lidos da entrada.
  */
@@ -39,10 +37,5 @@ void entradaFree(Entrada*);
  * Verifica dados passados na entrada.
  */
 void entradaVerifica(Entrada*);
-
-/**
- * Lê distâncias entre as capitais brasileiras e armazena como um grafo
- */
-void entradaLeDistancias(Entrada*, grafo*);
 
 #endif
