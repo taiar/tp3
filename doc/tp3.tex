@@ -234,14 +234,15 @@ As operações em lista são sempre $O(n)$ para o pior caso.
 \subsection{Módulos}
 O programa foi separado em quatro módulos:
 \begin{itemize}
-\item \textbf{Vocabulário:} controlou das estruturas responsáveis pelo
-armazenamento dos termos e o cálculo de toda lógica de funcionamento.
-\item \textbf{Entrada e Saída:}  controlou os arquivos que foram lidos e
-escritos pelo programa bem como a validação da entrada pela linha de comando.
-Outra função importante deste módulo foi filtrar os termos que não eram
-considerados palavras relevantes para o funcionamento do programa.
-\item \textbf{Util:} contém algumas funções que não se encaixavam bem nos outros
-módulos, além de ter o método de ordenação utilizado.
+\item \textbf{Grafo:} contém todas as operações executadas sobre a 
+estrutura de dados Grafo, que foi utilizada para armazenamento e cálculo
+das distâncias entre as cidades.
+\item \textbf{Entrada e Saída:} controla a leitura do arquivo de distâncias,
+e a escrita do resultado do programa na saída padrão. Também faz a validação dos 
+argumentos de entrada pela linha de comando.
+\item \textbf{Geografia:} contém dados como nomes das cidades (para sua identificação
+e armazenamento de seu número único de identificação), descrição das regiões do brasil
+segundo suas capitais e operações sobre esses dados geográficos.
 \item \textbf{Principal:} interagiu com todos os outros módulos retornando erro
 quando alguma irregularidade era colocada, controlou o fluxo de execução do
 programa.
@@ -253,40 +254,19 @@ sistema Linux chamado \textbf{getopt} que permite uma leitura mais robusta dos a
 passados ao programa. O comando para execução do programa definido para a linha de entrada 
 foi:
 \begin{verbatim}
-  #: ./tp0 -a <A> -b <B> -c <C>
+  #: ./tp3 -a <A> -b <B> -c <C> -d <D> -e <E> -f <F> -g [otima|heuristica]
 \end{verbatim}
 Sendo: 
 \begin{itemize}
-  \item \textbf{A} - caminho para um arquivo de entrada que contém uma lista de outros 
-      arquivos (um arquivo por linha);
-\begin{verbatim}
-texto1.txt
-texto2.txt
-texto3.txt
-texto4.txt
-...
-textoN.txt
-\end{verbatim}
-  \item \textbf{B} - caminho para o arquivo de saída que terá a lista de arquivos da 
-      entrada seguidos por suas respectivas palavras-chave;
-\begin{verbatim}
-texto1.txt;palavraA;palavraB;palavraC;...;palavraZ;
-texto2.txt;palavraA1;palavraB1;palavraC1;...;palavraZ1;
-texto3.txt;palavraA2;palavraB2;palavraC2;...;palavraZ2;
-texto4.txt;palavraA3;palavraB3;palavraC3;...;palavraZ3;
-...
-textoN.txt;palavraAN;palavraBN;palavraCN;...palavraZN;
-\end{verbatim}
-  \item \textbf{C} - caminho para o arquivo de saída que terá a lista de arquivos da 
-      entrada seguidos por uma lista de textos semelhantes à ele.
-\begin{verbatim}
-texto1.txt;textoA.txt;textoB.txt;...;textoZ.txt;
-texto2.txt;textoA1.txt;textoB1.txt;...;textoZ1.txt;
-texto3.txt;textoA2.txt;textoB2.txt;...;textoZ2.txt;
-texto4.txt;textoA3.txt;textoB3.txt;...;textoZ3.txt;
-...
-textoN.txt;textoAN.txt;textoBN.txt;textoCN.txt;...;textoZN.txt;
-\end{verbatim}
+  \item \textbf{A} - Quantidade total de dias de viagem;
+  \item \textbf{B} - Cidade em que a viagem começa (e consequentemente aonde deve terminar);
+  \item \textbf{C} - Dinheiro disponível para o gasto com esta viagem;
+  \item \textbf{D} - Quantidade máxima de dias que um candidato pode ficar sem visitar alguma
+  região geográfica do Brasil.
+  \item \textbf{E} - Preço por Km para viajar de Carro;
+  \item \textbf{F} - Preço por Km para viajar de Avião; 
+  \item \textbf{G} - Algoritmo a ser exevutado: solução ótima (\textit{otima}) ou a 
+  heurística (textit{heuristica}).
 \end{itemize}
 
 Todos os arquivos e/ou palavras chaves que forem listados devem estar na mesma linha 
