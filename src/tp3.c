@@ -16,6 +16,7 @@ int main(int argc, char **argv)
 
   iniciaDistancias(&brasil);
   leDistancias(&entrada, &brasil);
+  grafoImprime(&brasil);
 
   grafoFree(&brasil);
   entradaFree(&entrada);

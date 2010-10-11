@@ -44,8 +44,9 @@ void leDistancias(Entrada *entrada, grafo *grafo)
   {
     fscanf(entrada->distancias, "%s %s %s %s", buffCidadeA, buffCidadeB,
         buffDistRod, buffDistAer);
-    buff.rodoviaria = atoi(buffDistRod);
-    buff.aerea = atoi(buffDistAer);
+    buff.rodoviaria = (strcmp(buffDistRod, "inf") == 0) ? -1
+        : atoi(buffDistRod);
+    buff.aerea = (strcmp(buffDistAer, "inf") == 0) ? -1 : atoi(buffDistAer);
     grafoInsereAresta(cidadeGetIndice(buffCidadeA),
         cidadeGetIndice(buffCidadeB), buff, grafo);
   }
