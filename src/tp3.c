@@ -8,16 +8,16 @@
 int main(int argc, char **argv)
 {
   Entrada entrada;
+  grafo brasil;
 
   entradaInit(&entrada);
   if(!entradaLe(argc, argv, &entrada))
     return EXIT_FAILURE;
 
-  entradaVerifica(&entrada);
+  iniciaDistancias(&brasil);
+  leDistancias(&entrada, &brasil);
+
+  grafoFree(&brasil);
   entradaFree(&entrada);
-
-  printf("O indice de São Paulo é %d, Huuuuuummmmmnnn!!!\n", cidadeGetIndice("saopaulo"));
-  printf("Sao paula é da regiao %d\n", cidadeGetRegiao(cidadeGetIndice("saopaulo")));
-
   return EXIT_SUCCESS;
 }

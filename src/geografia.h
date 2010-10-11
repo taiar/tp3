@@ -30,11 +30,6 @@ static char cidades[N_CIDADES][N_MAX_CHAR_CIDADES_NAME] =
     "salvador", "saoluis", "saopaulo", "teresina", "vitoria" };
 
 /**
- * Grafo que armazena as distâncias entre as capitais.
- */
-static grafo brasil;
-
-/**
  * Vetor que especifica à qual região do Brasil cada capital pertence.
  */
 static int regioes[N_REGIOES][N_MAX_CIDADES_REGIAO] =
@@ -63,11 +58,11 @@ int cidadeGetRegiao(int);
 /**
  * Aloca grafo com as distancias entre as capitais brasileiras.
  */
-void iniciaDistancias();
+void iniciaDistancias(grafo*);
 
 /**
  * Lê distâncias entre as capitais brasileiras e armazena como um grafo.
  */
-void leDistancias(Entrada*);
+void leDistancias(Entrada*, grafo*);
 
 #endif /* GEOGRAFIA_H_ */

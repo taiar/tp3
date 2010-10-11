@@ -26,12 +26,12 @@ int cidadeGetRegiao(int cidade)
   return -1;
 }
 
-void iniciaDistancias()
+void iniciaDistancias(grafo *grafo)
 {
-  grafoInicia(N_CIDADES, &brasil);
+  grafoInicia(N_CIDADES, grafo);
 }
 
-void leDistancias(Entrada *entrada)
+void leDistancias(Entrada *entrada, grafo *grafo)
 {
   aresta buff;
   char buffCidadeA[20];
@@ -47,6 +47,6 @@ void leDistancias(Entrada *entrada)
     buff.rodoviaria = atoi(buffDistRod);
     buff.aerea = atoi(buffDistAer);
     grafoInsereAresta(cidadeGetIndice(buffCidadeA),
-        cidadeGetIndice(buffCidadeB), buff, &brasil);
+        cidadeGetIndice(buffCidadeB), buff, grafo);
   }
 }
