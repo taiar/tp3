@@ -67,6 +67,20 @@ do funcionamento do sistema.
 \section{Solução Proposta}
 \label{solucao_proposta}
 
+% algoritmo da heuristica:
+% modificacao na heuristica do vizinho mais proximo
+% 1 - esta na cidade inicial e escolhe qual a proxima baseada na distancia de carro
+% 2 - procede da forma 1 ate o tempo limite para ir para alguma regiao ser alcançado
+% 3 - com o limite alcancado, escolhe qual a menor distancia da regiao deve ir de carro
+% 4 - procede dessa forma ate que o caminho inteiro seja percorrido de carro
+% 5 - se os dias foram suficientes para que o caminho fosse feito de carro entao esse deve ser escolhido
+% 6 - se nao for, substituir as menores distancias de carro por distancias de aviao
+% 7 - seguir dessa forma ate que o numero de dias seja alcancado
+% 8 - e se o dinheiro nao for o suficiente?
+% --------------> isso significa que a heuristica nao funcionou para esta instancia por que 
+% --------------> o caminho escolhido nao foi pequeno o suficiente. ou ainda, que o caminho nunca poderia
+% --------------> ser completado com o dinheiro disponivel nos dias disponiveis 
+
 A solução proposta para os cálculos sobre as frequencias e ocorrencias das
 palavras utiliza um conjunto de estruturas de dados que contém informações sobre
 o termo em si (a palavra especificamente), o texto aonde ela ocorreu e quantas
