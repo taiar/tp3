@@ -22,10 +22,10 @@ void grafoInicia(int tamanho, grafo *g)
   return;
 }
 
-void grafoInsereAresta(int cX, int cY, int peso, grafo *g)
+void grafoInsereAresta(int x, int y, aresta a, grafo *g)
 {
-  g->matriz[cX][cY] = peso;
-  return;
+  g->distancias[x][y].aerea = a.aerea;
+  g->distancias[x][y].rodoviaria = a.rodoviaria;
 }
 
 aresta grafoRemoveAresta(int cX, int cY, grafo *g)
@@ -42,10 +42,9 @@ void grafoImprime(grafo *g)
   for (i = 0; i < g->nNos; ++i)
   {
     for (j = 0; j < g->nNos; ++j)
-      printf("%d\t", g->matriz[i][j]);
+      printf("(%d;%d)\t", g->distancias[i][j].aerea, g->distancias[i][j].rodoviaria);
     printf("\n");
   }
-  return;
 }
 
 void grafoFree(grafo *g)

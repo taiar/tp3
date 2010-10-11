@@ -14,8 +14,8 @@ typedef struct
 } grafo;
 
 void grafoInicia(int, grafo*);
-void grafoInsereAresta(int, int, int, grafo*);
-int grafoRemoveAresta(int, int, grafo*);
+void grafoInsereAresta(int, int, aresta, grafo*);
+aresta grafoRemoveAresta(int, int, grafo*);
 void grafoImprime(grafo*);
 void grafoFree(grafo*);
 
