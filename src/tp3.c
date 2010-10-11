@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "geografia.h"
 #include "io.h"
@@ -16,7 +17,18 @@ int main(int argc, char **argv)
 
   iniciaDistancias(&brasil);
   leDistancias(&entrada, &brasil);
-  grafoImprime(&brasil);
+
+  // Calcula solução ótima do problema
+  if(strcmp(entrada.algoritmo, "otima") == 0)
+  {
+    printf("otima\n");
+  }
+
+  // Calcula solução do problema utilizando heurística
+  else if(strcmp(entrada.algoritmo, "heuristica") == 0)
+  {
+    printf("heuristica\n");
+  }
 
   grafoFree(&brasil);
   entradaFree(&entrada);
