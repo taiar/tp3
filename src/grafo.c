@@ -24,8 +24,6 @@ void grafoInicia(int tamanho, grafo *g)
 
 void grafoInsereAresta(int x, int y, aresta a, grafo *g)
 {
-  printf("Distacia rodoviaria: %d\n", a.aerea);
-  printf("Distacia aerea: %d\n", a.rodoviaria);
   g->distancias[x][y].aerea = a.aerea;
   g->distancias[x][y].rodoviaria = a.rodoviaria;
 }
