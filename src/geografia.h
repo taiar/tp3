@@ -8,6 +8,7 @@
 #ifndef GEOGRAFIA_H_
 #define GEOGRAFIA_H_
 
+#include "io.h"
 #include "grafo.h"
 
 /**
@@ -27,6 +28,11 @@ static char cidades[N_CIDADES][N_MAX_CHAR_CIDADES_NAME] =
     "joaopessoa", "macapa", "maceio", "manaus", "natal", "palmas",
     "portoalegre", "portovelho", "recife", "riobranco", "riodejaneiro",
     "salvador", "saoluis", "saopaulo", "teresina", "vitoria" };
+
+/**
+ * Grafo que armazena as distâncias entre as capitais.
+ */
+static grafo brasil;
 
 /**
  * Vetor que especifica à qual região do Brasil cada capital pertence.
@@ -53,5 +59,15 @@ int cidadeGetIndice(char*);
  * Retorna região da cidade.
  */
 int cidadeGetRegiao(int);
+
+/**
+ * Aloca grafo com as distancias entre as capitais brasileiras.
+ */
+void iniciaDistancias();
+
+/**
+ * Lê distâncias entre as capitais brasileiras e armazena como um grafo.
+ */
+void leDistancias(Entrada*);
 
 #endif /* GEOGRAFIA_H_ */
