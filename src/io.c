@@ -69,6 +69,12 @@ int entradaLe(int argc, char** argv, Entrada *entrada)
     return 0;
   }
 
+  if((strcmp(entrada->algoritmo, "otima") != 0) && (strcmp(entrada->algoritmo, "heuristica") != 0))
+  {
+    printf("O algoritmo escolhido não existe.\n");
+    return 0;
+  }
+
   entrada->distancias = fopen("distancias", "r");
   if (!entrada->distancias)
   {
