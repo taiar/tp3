@@ -20,12 +20,21 @@
 #define N_MAX_CIDADES_REGIAO 9
 
 /**
+ * Definição aproximada das velocidades médias em Km\h de viagens de carro e avião.
+ */
+#define VEL_MED_VIAG_CARRO 80
+#define VEL_MED VIAG_AVIAO 354
+
+/**
  * Estrutura que armazenará os dados da viagem.
  */
 typedef struct
 {
   int visitado[N_CIDADES];
+  int trajeto[N_CIDADES];
+  int diasSemVisitar[N_REGIOES];
   int cidadeAtual;
+  int diasTotal;
   unsigned int distanciaTotal;
   double custoTotal;
 } Viagem;
@@ -67,17 +76,18 @@ int cidadeGetIndice(char*);
 int cidadeGetRegiao(int);
 
 /**
- * Aloca grafo com as distancias entre as capitais brasileiras.
- */
-void geografiaIniciaDistancias(grafo*);
-
-/**
  * Lê distâncias entre as capitais brasileiras e armazena como um grafo.
  */
 void geografiaLeDistancias(Entrada*, grafo*);
 
 /**
- *
+ * Inicia os dados da viagem.
  */
+void viagemInicia(Viagem*, Entrada*);
+
+/**
+ * Utiliza uma variação da heurística do vizinho mais próximo para resolver o problema.
+ */
+void viagemVizinhoMaisProximo(Viagem*, grafo*, Entrada*);
 
 #endif /* GEOGRAFIA_H_ */

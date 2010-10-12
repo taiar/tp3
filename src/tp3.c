@@ -10,13 +10,14 @@ int main(int argc, char **argv)
 {
   Entrada entrada;
   grafo brasil;
+  Viagem viagem;
 
   entradaInit(&entrada);
   if(!entradaLe(argc, argv, &entrada))
     return EXIT_FAILURE;
 
-  geografiaIniciaDistancias(&brasil);
   geografiaLeDistancias(&entrada, &brasil);
+  viagemInicia(&viagem, &entrada);
 
   // Calcula solução ótima do problema
   if(strcmp(entrada.algoritmo, "otima") == 0)

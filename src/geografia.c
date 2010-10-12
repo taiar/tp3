@@ -26,20 +26,18 @@ int cidadeGetRegiao(int cidade)
   return -1;
 }
 
-void geografiaIniciaDistancias(grafo *grafo)
-{
-  grafoInicia(N_CIDADES, grafo);
-}
-
 void geografiaLeDistancias(Entrada *entrada, grafo *grafo)
 {
+  int i;
   aresta buff;
   char buffCidadeA[20];
   char buffCidadeB[20];
   char buffDistAer[10];
   char buffDistRod[10];
   int n = (N_CIDADES * N_CIDADES) - N_CIDADES;
-  int i;
+
+  grafoInicia(N_CIDADES, grafo);
+
   for (i = 0; i < n; i += 1)
   {
     fscanf(entrada->distancias, "%s %s %s %s", buffCidadeA, buffCidadeB,
@@ -50,4 +48,24 @@ void geografiaLeDistancias(Entrada *entrada, grafo *grafo)
     grafoInsereAresta(cidadeGetIndice(buffCidadeA),
         cidadeGetIndice(buffCidadeB), buff, grafo);
   }
+}
+
+void viagemInicia(Viagem *viagem, Entrada *entrada)
+{
+  int i;
+  for (i = 0; i < N_CIDADES; i += 1)
+    viagem->visitado[i] = 0;
+  for (i = 0; i < N_CIDADES; i += 1)
+    viagem->trajeto[i] = 0;
+  for (i = 0; i < N_REGIOES; i += 1)
+    viagem->diasSemVisitar[i] = 0;
+  viagem->cidadeAtual = cidadeGetIndice(entrada->cidadeInicio);
+  viagem->diasTotal = 1;
+  viagem->distanciaTotal = 0;
+  viagem->custoTotal = .0;
+}
+
+void viagemVizinhoMaisProximo(Viagem *viagem, grafo *grafo, Entrada *entrada)
+{
+
 }
