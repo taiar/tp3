@@ -20,6 +20,17 @@
 #define N_MAX_CIDADES_REGIAO 9
 
 /**
+ * Estrutura que armazenará os dados da viagem.
+ */
+typedef struct
+{
+  int visitado[N_CIDADES];
+  int cidadeAtual;
+  unsigned int distanciaTotal;
+  double custoTotal;
+} Viagem;
+
+/**
  * Vetor que armazena os nomes das capitais do Brasil em ordem alfabética.
  */
 static char cidades[N_CIDADES][N_MAX_CHAR_CIDADES_NAME] =
@@ -58,11 +69,15 @@ int cidadeGetRegiao(int);
 /**
  * Aloca grafo com as distancias entre as capitais brasileiras.
  */
-void iniciaDistancias(grafo*);
+void geografiaIniciaDistancias(grafo*);
 
 /**
  * Lê distâncias entre as capitais brasileiras e armazena como um grafo.
  */
-void leDistancias(Entrada*, grafo*);
+void geografiaLeDistancias(Entrada*, grafo*);
+
+/**
+ *
+ */
 
 #endif /* GEOGRAFIA_H_ */

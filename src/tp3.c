@@ -15,8 +15,8 @@ int main(int argc, char **argv)
   if(!entradaLe(argc, argv, &entrada))
     return EXIT_FAILURE;
 
-  iniciaDistancias(&brasil);
-  leDistancias(&entrada, &brasil);
+  geografiaIniciaDistancias(&brasil);
+  geografiaLeDistancias(&entrada, &brasil);
 
   // Calcula solução ótima do problema
   if(strcmp(entrada.algoritmo, "otima") == 0)

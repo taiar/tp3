@@ -26,12 +26,12 @@ int cidadeGetRegiao(int cidade)
   return -1;
 }
 
-void iniciaDistancias(grafo *grafo)
+void geografiaIniciaDistancias(grafo *grafo)
 {
   grafoInicia(N_CIDADES, grafo);
 }
 
-void leDistancias(Entrada *entrada, grafo *grafo)
+void geografiaLeDistancias(Entrada *entrada, grafo *grafo)
 {
   aresta buff;
   char buffCidadeA[20];
