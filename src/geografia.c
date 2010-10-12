@@ -43,7 +43,8 @@ int cidadeGetCidadeMaisProximaRodoviaria(Viagem *viagem, grafo *grafo,
     // verificar primeiro se existe alguma regiao que deve ser atendida e formar um conjunto com
     // as cidades que devem ser analisadas
 
-    //deve calcular melhor como fazer para visitar as cidades em um tempo melhor e fazer a previsao do tempo caso preciso
+    // deve calcular melhor como fazer para visitar as cidades em um tempo melhor e fazer a
+    // previsao do tempo caso preciso
     if ((viagem->visitado[i] == 0 && viagem->diasSemVisitar[cidadeGetRegiao(i)]
         <= entrada->totalDias
         && grafo->distancias[viagem->cidadeAtual][i].rodoviaria
