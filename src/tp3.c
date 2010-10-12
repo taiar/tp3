@@ -28,6 +28,7 @@ int main(int argc, char **argv)
   // Calcula solução do problema utilizando heurística
   else if(strcmp(entrada.algoritmo, "heuristica") == 0)
   {
+    viagemVizinhoMaisProximo(&viagem, &brasil, &entrada);
     printf("heuristica\n");
   }
 

@@ -33,8 +33,10 @@ typedef struct
   int visitado[N_CIDADES];
   int trajeto[N_CIDADES];
   int diasSemVisitar[N_REGIOES];
+
   int cidadeAtual;
   int diasTotal;
+  int cidadesVisitadasTotal;
   unsigned int distanciaTotal;
   double custoTotal;
 } Viagem;
@@ -71,9 +73,20 @@ static int regioes[N_REGIOES][N_MAX_CIDADES_REGIAO] =
 int cidadeGetIndice(char*);
 
 /**
+ * Retorna o nome da cidade de acordo com o seu índice.
+ */
+char* cidadeGetNome(int);
+
+/**
  * Retorna região da cidade.
  */
 int cidadeGetRegiao(int);
+
+/**
+ * Retorna o indice da cidade mais próxima da atual via rodoviária e respeitando
+ * o tempo de viagem entre as regiões do Brasil.
+ */
+int cidadeGetCidadeMaisProximaRodoviaria(Viagem*, grafo*, Entrada*);
 
 /**
  * Lê distâncias entre as capitais brasileiras e armazena como um grafo.
