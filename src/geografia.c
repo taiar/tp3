@@ -37,13 +37,12 @@ int cidadeGetCidadeMaisProximaRodoviaria(Viagem *viagem, grafo *grafo,
     Entrada *entrada)
 {
   int i;
-  int *regioes;
   int indCidadeMaisProxima = -1;
   int distanciaMaisProxima = -1;
+  int *regioes = regioesRestringeVisita(viagem, entrada);
 
   for (i = 0; i < N_CIDADES; i += 1)
   {
-    regioes = regioesRestringeVisita(viagem, entrada);
     if ((viagem->visitado[i] == 0 && regioes[i] == 1
         && grafo->distancias[viagem->cidadeAtual][i].rodoviaria
             < distanciaMaisProxima
@@ -55,8 +54,8 @@ int cidadeGetCidadeMaisProximaRodoviaria(Viagem *viagem, grafo *grafo,
       distanciaMaisProxima
           = grafo->distancias[viagem->cidadeAtual][i].rodoviaria;
     }
-    free(regioes);
   }
+  free(regioes);
   return indCidadeMaisProxima;
 }
 
@@ -69,7 +68,7 @@ int* regioesRestringeVisita(Viagem *viagem, Entrada *entrada)
   for (i = 0; i < N_CIDADES; i += 1)
     buff[i] = 0;
 
-  // Contabiliza regiões com o mesmo numero de carência em visitas
+  // Contabiliza regiões com o mesmo numero de carência em visitas.
   for (i = 0; i < N_REGIOES; i += 1)
   {
     for (j = 0; j < N_REGIOES; j += 1)
@@ -87,15 +86,25 @@ int* regioesRestringeVisita(Viagem *viagem, Entrada *entrada)
       buff[i] = 1;
   else
   {
-    // Gera vetor com capitais das regiões que devem ser visitadas
-    for (i = 0; i < N_REGIOES; i += 1)
-      if (viagem->diasSemVisitar[i] == iguais)
-        for (j = 0; i < N_MAX_CIDADES_REGIAO; j += 1)
-          if (regioes[i][j] > -1)
-            buff[regioes[i][j]] = 1;
-          else
-            break;
+    // Leva em conta os dias em que pode ficar sem visitar alguma regiao
+    if (entrada->diasAway - iguais == N_REGIOES)
+    {
+      // Gera vetor com capitais das regiões que devem ser visitadas.
+      for (i = 0; i < N_REGIOES; i += 1)
+        if (viagem->diasSemVisitar[i] == iguais)
+          for (j = 0; i < N_MAX_CIDADES_REGIAO; j += 1)
+            if (regioes[i][j] > -1)
+              buff[regioes[i][j]] = 1;
+            else
+              break;
+    }
+    else
+    {
+      for (i = 0; i < N_CIDADES; i += 1)
+        buff[i] = 1;
+    }
   }
+  printv(buff, N_CIDADES);
   return buff;
 }
 
@@ -169,4 +178,27 @@ void viagemVizinhoMaisProximo(Viagem *viagem, grafo *grafo, Entrada *entrada)
             * entrada->precoKmCarro;
     printf("%s\n", cidadeGetNome(proxCid));
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void printv(int *v, int s)
+{
+  int i;
+  for(i = 0; i < s; i += 1)
+    printf("%d ", v[i]);
+  printf("\n");
 }

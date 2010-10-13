@@ -108,4 +108,24 @@ void viagemInicia(Viagem*, Entrada*);
  */
 void viagemVizinhoMaisProximo(Viagem*, grafo*, Entrada*);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void printv(int*, int);
+
 #endif /* GEOGRAFIA_H_ */
