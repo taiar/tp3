@@ -63,6 +63,7 @@ int* regioesRestringeVisita(Viagem *viagem, Entrada *entrada)
 {
   int i, j;
   int iguais = 0;
+  int valDias = -1;
   int *buff = (int*) malloc(sizeof(int) * N_CIDADES);
 
   for (i = 0; i < N_CIDADES; i += 1)
@@ -72,8 +73,13 @@ int* regioesRestringeVisita(Viagem *viagem, Entrada *entrada)
   for (i = 0; i < N_REGIOES; i += 1)
   {
     for (j = 0; j < N_REGIOES; j += 1)
+    {
       if ((viagem->diasSemVisitar[i] == viagem->diasSemVisitar[j]) && (i != j))
+      {
         iguais += 1;
+        valDias = viagem->diasSemVisitar[i];
+      }
+    }
     if (iguais != 0)
     {
       iguais += 1;
@@ -87,12 +93,13 @@ int* regioesRestringeVisita(Viagem *viagem, Entrada *entrada)
   else
   {
     // Leva em conta os dias em que pode ficar sem visitar alguma regiao
-    if (entrada->diasAway - iguais == N_REGIOES)
+    if (entrada->diasAway - valDias == N_REGIOES - 1)
     {
+      printf("%d aqui .... \n", entrada->diasAway - valDias);
       // Gera vetor com capitais das regiões que devem ser visitadas.
       for (i = 0; i < N_REGIOES; i += 1)
-        if (viagem->diasSemVisitar[i] == iguais)
-          for (j = 0; i < N_MAX_CIDADES_REGIAO; j += 1)
+        if (viagem->diasSemVisitar[i] == valDias)
+          for (j = 0; j < N_MAX_CIDADES_REGIAO; j += 1)
             if (regioes[i][j] > -1)
               buff[regioes[i][j]] = 1;
             else
@@ -104,7 +111,6 @@ int* regioesRestringeVisita(Viagem *viagem, Entrada *entrada)
         buff[i] = 1;
     }
   }
-  printv(buff, N_CIDADES);
   return buff;
 }
 
