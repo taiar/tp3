@@ -89,6 +89,11 @@ int cidadeGetRegiao(int);
 int cidadeGetCidadeMaisProximaRodoviaria(Viagem*, grafo*, Entrada*);
 
 /**
+ * Verifica para qual região o candidato deve ir primeiro.
+ */
+int* regioesRestringeVisita(Viagem *viagem, Entrada *entrada);
+
+/**
  * Lê distâncias entre as capitais brasileiras e armazena como um grafo.
  */
 void geografiaLeDistancias(Entrada*, grafo*);

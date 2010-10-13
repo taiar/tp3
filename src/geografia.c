@@ -13,7 +13,8 @@ int cidadeGetIndice(char *name)
 {
   int i;
   for (i = 0; i < N_CIDADES; i += 1)
-    if (strcmp(name, cidades[i]) == 0) return i;
+    if (strcmp(name, cidades[i]) == 0)
+      return i;
   return -1;
 }
 
@@ -27,7 +28,8 @@ int cidadeGetRegiao(int cidade)
   int i, j;
   for (i = 0; i < N_REGIOES; i += 1)
     for (j = 0; j < N_MAX_CIDADES_REGIAO; j += 1)
-      if ((regioes[i][j] >= 0) & (regioes[i][j] == cidade)) return i;
+      if ((regioes[i][j] >= 0) & (regioes[i][j] == cidade))
+        return i;
   return -1;
 }
 
@@ -35,28 +37,66 @@ int cidadeGetCidadeMaisProximaRodoviaria(Viagem *viagem, grafo *grafo,
     Entrada *entrada)
 {
   int i;
+  int *regioes;
   int indCidadeMaisProxima = -1;
   int distanciaMaisProxima = -1;
 
   for (i = 0; i < N_CIDADES; i += 1)
   {
-    // verificar primeiro se existe alguma regiao que deve ser atendida e formar um conjunto com
-    // as cidades que devem ser analisadas
-    // deve calcular melhor como fazer para visitar as cidades em um tempo melhor e fazer a
-    // previsao do tempo caso preciso
-
-    if ((viagem->visitado[i] == 0 &&
-         grafo->distancias[viagem->cidadeAtual][i].rodoviaria
-            < distanciaMaisProxima &&
-         grafo->distancias[viagem->cidadeAtual][i].rodoviaria > 0)
-        || ((indCidadeMaisProxima < 0 || distanciaMaisProxima < 0) && viagem->visitado[i] == 0))
+    regioes = regioesRestringeVisita(viagem, entrada);
+    if ((viagem->visitado[i] == 0 && regioes[i] == 1
+        && grafo->distancias[viagem->cidadeAtual][i].rodoviaria
+            < distanciaMaisProxima
+        && grafo->distancias[viagem->cidadeAtual][i].rodoviaria > 0)
+        || ((indCidadeMaisProxima < 0 || distanciaMaisProxima < 0)
+            && viagem->visitado[i] == 0))
     {
       indCidadeMaisProxima = i;
       distanciaMaisProxima
           = grafo->distancias[viagem->cidadeAtual][i].rodoviaria;
     }
+    free(regioes);
   }
   return indCidadeMaisProxima;
+}
+
+int* regioesRestringeVisita(Viagem *viagem, Entrada *entrada)
+{
+  int i, j;
+  int iguais = 0;
+  int *buff = (int*) malloc(sizeof(int) * N_CIDADES);
+
+  for (i = 0; i < N_CIDADES; i += 1)
+    buff[i] = 0;
+
+  // Contabiliza regiões com o mesmo numero de carência em visitas
+  for (i = 0; i < N_REGIOES; i += 1)
+  {
+    for (j = 0; j < N_REGIOES; j += 1)
+      if ((viagem->diasSemVisitar[i] == viagem->diasSemVisitar[j]) && (i != j))
+        iguais += 1;
+    if (iguais != 0)
+    {
+      iguais += 1;
+      break;
+    }
+  }
+
+  if (iguais == 0)
+    for (i = 0; i < N_CIDADES; i += 1)
+      buff[i] = 1;
+  else
+  {
+    // Gera vetor com capitais das regiões que devem ser visitadas
+    for (i = 0; i < N_REGIOES; i += 1)
+      if (viagem->diasSemVisitar[i] == iguais)
+        for (j = 0; i < N_MAX_CIDADES_REGIAO; j += 1)
+          if (regioes[i][j] > -1)
+            buff[regioes[i][j]] = 1;
+          else
+            break;
+  }
+  return buff;
 }
 
 void geografiaLeDistancias(Entrada *entrada, grafo *grafo)
