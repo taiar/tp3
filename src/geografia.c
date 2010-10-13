@@ -42,15 +42,14 @@ int cidadeGetCidadeMaisProximaRodoviaria(Viagem *viagem, grafo *grafo,
   {
     // verificar primeiro se existe alguma regiao que deve ser atendida e formar um conjunto com
     // as cidades que devem ser analisadas
-
     // deve calcular melhor como fazer para visitar as cidades em um tempo melhor e fazer a
     // previsao do tempo caso preciso
-    if ((viagem->visitado[i] == 0 && viagem->diasSemVisitar[cidadeGetRegiao(i)]
-        <= entrada->totalDias
-        && grafo->distancias[viagem->cidadeAtual][i].rodoviaria
-            < distanciaMaisProxima
-        && grafo->distancias[viagem->cidadeAtual][i].rodoviaria > 0)
-        || (indCidadeMaisProxima < 0))
+
+    if ((viagem->visitado[i] == 0 &&
+         grafo->distancias[viagem->cidadeAtual][i].rodoviaria
+            < distanciaMaisProxima &&
+         grafo->distancias[viagem->cidadeAtual][i].rodoviaria > 0)
+        || ((indCidadeMaisProxima < 0 || distanciaMaisProxima < 0) && viagem->visitado[i] == 0))
     {
       indCidadeMaisProxima = i;
       distanciaMaisProxima

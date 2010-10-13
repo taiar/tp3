@@ -29,7 +29,6 @@ int main(int argc, char **argv)
   else if(strcmp(entrada.algoritmo, "heuristica") == 0)
   {
     viagemVizinhoMaisProximo(&viagem, &brasil, &entrada);
-    printf("heuristica\n");
   }
 
   grafoFree(&brasil);
