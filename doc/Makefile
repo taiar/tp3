@@ -15,3 +15,4 @@ clean:
 see: all
 	${LATEX_VISUALIZATION} ${FILE}.pdf &
 
+run: see

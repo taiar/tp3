@@ -71,6 +71,37 @@ verificar a otimalidade completa da solução, busca-se uma otimalidade local na
 de que ela constitua parte da solução ótima global, ou pelo menos não se distancie da 
 mesma.
 
+O problema que iremos trabalhar no desenvolvimento do trabalho é uma variação de um
+problema clássico em computação; o \textbf{problema do caixeiro-viajante} (ou \textbf{\textit{PCV}}): um 
+caixeiro-viajante deseja visitar $n$ cidades de tal forma que a sua viagem inicie e 
+termine na mesma cidade, e cada cidade deve ser visitada uma única vez. Supondo que 
+sempre exista uma estrada entre duas cidades quaisquer, o problema é encontrar a menor
+rota que o caixeiro-visitada possa utilizar na sua viagem. Esse problema se enquadra 
+na categoria \textit{NP-Difícil}, isso significa que ele é pelo menos tão difícil 
+quanto os problemas mais difíceis em \textit{NP}. 
+
+No problema abordado no trabalho, candidatos à presidência do Brasil devem viajar
+por todas as capitais dos estados do país passando por cada uma dessas cidadedes uma
+única vez. Abordado dessa forma o problema é uma instância simples do PCV. Porém, 
+algumas restrições foram impostas:
+
+\begin{itemize}
+  \item eles têm a opção de viajar pelas capitais de carro ou avião (e ambos têm 
+  distâncias e custos diferentes);
+  \item eles têm dinheiro limitado para completar a viagem;
+  \item eles têm uma quantidade de dias máximo para completar a viagem (o tempo de 
+  deslocamento deve ser levado em conta);
+  \item eles não podem ficar mais do que uma quantidade arbitrária de dias sem 
+  visitar alguma região do Brasil (Norte, Nordeste, Centro-oeste, Sudeste e Sul).
+\end{itemize}
+
+Deve ser calculada a solução ótima do problema e uma solução aproximada por meio de
+uma heurística. Como se trata de um problema pertencente à classe \textit{NP}, a solução
+ótima não pode ser calculada em tempo polinomial (o único meio de obtê-la é exautivamente) 
+e, por isso, teremos que calcular a solução ótima para uma entrada menor do que a 
+especificada (diminuindo o número de cidades a serem visitadas) com o intuito de obter 
+um resultado para avaliação.
+
 \section{Solução Proposta}
 \label{solucao_proposta}
 
