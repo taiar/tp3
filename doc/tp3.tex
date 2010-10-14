@@ -38,31 +38,32 @@
 
 \begin{resumo}
 
+escrever uma breve introdução que aborda um pouco sobre np, heuristicas e as 
+coisas abordadas nesse trabalho
+
 \end{resumo}
 
 \section{Introdução}
 
-Neste trabalho foi desenvolvido um sistema que, dado um conjunto de textos
-qualquer, encontramos para cada elemento o seu tópico/palavras-chaves. De acordo
-com a ocorrência das palavras-chaves nos textos, podemos definir algumas
-métricas de semelhança entre os eles e, assim, identificar 
-textos que têm conteúdo semânticamente relacionado de uma forma automática.
+Em todas as ciências que o homem estuda existem problemas considerados insolúveis 
+ou intratáveis; problemas que, pelo menos com o conhecimento do qual dispomos hoje 
+em dia, não conseguimos resolver. A ciência da computação não foge à essa regra e, 
+portanto, existem problemas computacionais cuja solução eficiente é desconhecida.
+Tais problemas são abordados por algoritmos de ordem de complexidade exponencial e,
+por sua própria natureza, não podem ser computados em um tempo prático para instâncias
+relevantes de problemas. O nome que damos à essa classe de problemas é NP (\textit{Not 
+Polynomial}). Para estes problemas podemos obter soluções em tempo polinomial que nem
+sempre serão ótimas (apesar de conter qualidade prática) utilizando heurísticas. 
 
-Esse tipo de análise de conteúdo semânticamente relacionado vem sendo amplamente
-utilizado para conjuntos cada vez maiores de informação. A Web é um exemplo de
-rede com conteúdo vasto e que crescimento vertiginoso. Organizar e encontrar
-toda essa informação de forma relevante através em um conteúdo tão vasto e
-fragmentado em sites, blogs, wikis, redes sociais, etc, é uma importante
-aplicação deste trabalho e do que é desenvolvido com relação à Recuperação de
-Informação.
-
-Aqui foram implementados algoritmos simples operando sobre uma estrutura de
-dados de pesquisa em memória bem eficiente e dinâmica. Foram avaliadas métricas
-simples de classificar o conteúdo dos textos por palavras-chaves e,
-posteriormente calcular o quão relacionados estes textos são. Ao final, farei a
-análise de quão boa foram as métricas propostas para avaliar a semelhança entre
-os conteúdos e variar as diversas considerações para obter uma visão mais ampla
-do funcionamento do sistema.
+Heurísticas são modificações no tratamento do problema, de forma a produzir algoritmos 
+polinomiais para problemas exponenciais a custo de otimalidade. Isso significa que um 
+algoritmo heurístico pode não produzir uma solução ótima, na verdade, uma solução 
+heurística pode nem mesmo produzir uma solução. O que se faz é assumir certos riscos 
+e fazer a computação ignorando-se o espaço de soluções que consideramos dispensável. 
+Uma estratégia tipicamente heurística é a usada em algoritmos gulosos: ao invés de se 
+verificar a otimalidade completa da solução, busca-se uma otimalidade local na esperança 
+de que ela constitua parte da solução ótima global, ou pelo menos não se distancie da 
+mesma.
 
 \section{Solução Proposta}
 \label{solucao_proposta}
