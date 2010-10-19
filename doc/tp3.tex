@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[10pt]{article}
 \usepackage{sbc-template}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -143,9 +143,28 @@ Introdução. Os passos são os seguintes:
 \begin{itemize}
   \item À partir da cidade inicial/atual, verificar se existe alguma região que tem necessidade
   de ser visitada
+  \item se houver, carregar a lista das regioes que precisam ser visitadas
+  \item encontrar a distancia mais curta da cidade atual para a lista de cidades
+  a serem visitadas.
+  \item ir para esta cidade e repetir do passo 2 ate que complete a lista de
+  cidades visitadas.
+
+  \item se
   
   %acabar de descrever e fazer este algoritmo
 \end{itemize}
+
+\begin{algorithm}[linesnumbered, vlined]
+\begin{footnotesize}
+\tcp{$regioes$ - vetor que guarda as próximas regiões que precisam ser visitadas\;
+\\ $percurso$ - vetor que guarda o percurso gerado no caminho pelas cidades\;
+\\ $cidadeAtual$ - armazena a cidade em que o candidato está no momento\;}
+  \SetLine
+  \SetLine
+  \Return $regioes$
+\caption{Heurística que resolve o problema das viagens}
+\end{footnotesize}
+\end{algorithm}
 
 % algoritmo da heuristica:
 % modificacao na heuristica do vizinho mais proximo
@@ -160,29 +179,6 @@ Introdução. Os passos são os seguintes:
 % --------------> isso significa que a heuristica nao funcionou para esta instancia por que 
 % --------------> o caminho escolhido nao foi pequeno o suficiente. ou ainda, que o caminho nunca poderia
 % --------------> ser completado com o dinheiro disponivel nos dias disponiveis 
-
-\begin{algorithm}[h!]
-\begin{footnotesize}
-  \ForEach{Documento}{
-    \ForEach{termo válido}{
-      \If{o termo já apareceu em algum texto}{
-        \If{o termo já apareceu neste texto}{
-          incrementa o contador de ocorrências correspondente ao termo no texto;\
-        }
-        \Else{
-          insere o texto na lista e contabiliza o contador de ocorrências para
-          este termo;\
-        }
-      }
-      \Else{
-        insere o nó referente ao termo, insere o texto na lista e contabiliza o
-        contador de ocorrências para este termo;\
-      }
-    }
-  }
-\caption{Leitura do índice}
-\end{footnotesize}
-\end{algorithm}
 
 Em uma aplicação real, muitos passos podem ser feitos para determinar
 efetivamente o que é e o que não é um termo relevante e, dessa forma, poupar
