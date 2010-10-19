@@ -72,13 +72,13 @@ de que ela constitua parte da solução ótima global, ou pelo menos não se dis
 mesma.
 
 O problema que iremos trabalhar no desenvolvimento do trabalho é uma variação de um
-problema clássico em computação; o \textbf{problema do caixeiro-viajante} (ou \textbf{\textit{PCV}}): um 
-caixeiro-viajante deseja visitar $n$ cidades de tal forma que a sua viagem inicie e 
-termine na mesma cidade, e cada cidade deve ser visitada uma única vez. Supondo que 
-sempre exista uma estrada entre duas cidades quaisquer, o problema é encontrar a menor
-rota que o caixeiro-visitada possa utilizar na sua viagem. Esse problema se enquadra 
-na categoria \textit{NP-Difícil}, isso significa que ele é pelo menos tão difícil 
-quanto os problemas mais difíceis em \textit{NP}. 
+problema clássico em computação; o \textbf{problema do caixeiro-viajante} (ou 
+\textbf{\textit{PCV}}): um caixeiro-viajante deseja visitar $n$ cidades de tal forma 
+que a sua viagem inicie e termine na mesma cidade, e cada cidade deve ser visitada uma 
+única vez. Supondo que sempre exista uma estrada entre duas cidades quaisquer, o problema 
+é encontrar a menor rota que o caixeiro-visitada possa utilizar na sua viagem. Esse 
+problema se enquadra na categoria \textit{NP-Difícil}, isso significa que ele é pelo 
+menos tão difícil quanto os problemas mais difíceis em \textit{NP}. 
 
 No problema abordado no trabalho, candidatos à presidência do Brasil devem viajar
 por todas as capitais dos estados do país passando por cada uma dessas cidadedes uma
@@ -105,6 +105,38 @@ um resultado para avaliação.
 \section{Solução Proposta}
 \label{solucao_proposta}
 
+falar sobre a representacao por grafos.
+
+\subsection{Solução Ótima}
+
+
+\subsection{Heurística}
+A heurística utilizada neste trabalho é baseada em uma heurística clássica da literatura
+conhecida como \textbf{Heurística do Vizinho Mais Próximo}. Esta, funciona assim:
+
+\begin{algorithm}[h!]
+\begin{footnotesize}
+  $G \longleftarrow $ grafo que contém as distâncias rodoviárias e aéreas entre todas as 
+  capitais do Brasil\;
+  $c \longleftarrow $ lista de cidades não visitadas\;
+  $p \longleftarrow $ percurso gerado pela heurística\;
+  $CidadeAtual \longleftarrow $ cidade em que o percurso vai começar\;
+  $p_{1} \longleftarrow CidadeAtual$\;
+  \ForEach{$c$ não visitada em $G$}{
+    \If{Distância de $c_{i}$ para $CidadeAtual$ é a menor de todas as não visitadas}{
+      $CidadeAtual \longleftarrow c_{i}$\;
+      $p \longleftarrow CidadeAtual$\;
+    }
+  }
+  \Return{$p$}
+\caption{Heurística do Vizinho Mais Próximo}
+\end{footnotesize}
+\end{algorithm}
+
+A heurística é um algoritmo guloso que itera fazendo as melhores escolhas locais, ou seja:
+pega sempre a menor distância entre a cidade atual e uma cidade do conjunto de cidades ainda
+não visitadas disponíveis, até completar o percurso.
+
 % algoritmo da heuristica:
 % modificacao na heuristica do vizinho mais proximo
 % 1 - esta na cidade inicial e escolhe qual a proxima baseada na distancia de carro
@@ -118,24 +150,6 @@ um resultado para avaliação.
 % --------------> isso significa que a heuristica nao funcionou para esta instancia por que 
 % --------------> o caminho escolhido nao foi pequeno o suficiente. ou ainda, que o caminho nunca poderia
 % --------------> ser completado com o dinheiro disponivel nos dias disponiveis 
-
-A solução proposta para os cálculos sobre as frequencias e ocorrencias das
-palavras utiliza um conjunto de estruturas de dados que contém informações sobre
-o termo em si (a palavra especificamente), o texto aonde ela ocorreu e quantas
-vezes ocorreu naquele texto. Em diferentes partes do algoritmo, esta estrutura está
-organizada de diferentes formas: às vezes como uma árvore binária, como um vetor
-de árvores binárias, como uma lista encadeada e como um vetor nos casos em que
-exigiam ordenação.
-
-Para criar uma estrutura de pesquisa eficiente tanto em termos de espaço quanto
-custo computacional, optei por armazenar todo o índice de ocorrências dos termos
-em forma de uma árvore binária. Cada nó dessa árvore tem uma lista encadeada de
-ocorrências do termo que armazenam em cada célula o texto em que aquele termo
-apareceu e quantas vezes apareceu nesse texto.
-
-Primeiramete, é criado um índice lendo um por um os arquivos passados como
-entrada para serem analisados. Cada termo desse arquivo é inserido na estrutura
-da árvore e servirá como nosso índice/vocabulário.
 
 \begin{algorithm}[h!]
 \begin{footnotesize}
